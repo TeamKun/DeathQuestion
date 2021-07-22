@@ -1,0 +1,4 @@
+name: DeathQuestion
+version: ${project.version}
+main: net.kunmc.lab.deathquestion.DeathQuestion
+api-version: 1.16
