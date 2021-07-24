@@ -2,3 +2,15 @@ name: DeathQuestion
 version: ${project.version}
 main: net.kunmc.lab.deathquestion.DeathQuestion
 api-version: 1.16
+commands:
+  open:
+    permission: deathQuestion.public
+  vote:
+    permission: deathQuestion.op
+  question:
+    permission: deathQuestion.op
+permissions:
+  deathQuestion.public:
+    default: true
+  deathQuestion.op:
+    default: op
