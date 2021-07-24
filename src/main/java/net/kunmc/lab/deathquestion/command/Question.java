@@ -14,16 +14,68 @@ import java.util.stream.Collectors;
 public class Question implements CommandExecutor, TabCompleter {
 
     /** サブコマンド */
-    private Set<SubCommand> allowed;
+    private Set<SubCommand> allowedSubcommand;
+
+    /** ignorePlayerのサブコマンド */
+    private Set<SubCommand> allowedIgnorePlayerSubcommand;
 
     {
-        allowed = EnumSet.of(SubCommand.ASK, SubCommand.ADD_IGNORE_PLAYER, SubCommand.CANCEL);
+        allowedSubcommand = EnumSet.of(SubCommand.ASK, SubCommand.IGNORE_PLAYER, SubCommand.CANCEL);
+        allowedIgnorePlayerSubcommand = EnumSet.of(SubCommand.ADD, SubCommand.REMOVE);
     }
 
     @Override
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String[] args) {
-        MessageUtil.sendAll("question");
+        // TODO 引数が１つ以上存在するか
+
+        // TODO サブコマンドが正常か
+
+        switch (SubCommand.getSubCommand(args[0])) {
+            case ASK:
+                ask(sender,args);
+                break;
+            case IGNORE_PLAYER:
+                ignorePlayer(sender,args);
+                break;
+            case CANCEL:
+                cancel(sender,args);
+                break;
+
+        }
         return false;
+    }
+
+    private void ask(CommandSender sender, String[] args) {
+        // TODO 引数が足りているか
+
+        // TODO 出題処理
+    }
+
+    private void ignorePlayer(CommandSender sender, String[] args) {
+
+        // TODO 引数が足りているか
+
+        // TODO 引数が正常か
+
+        // TODO プレイヤーが存在するか
+
+        switch (SubCommand.getSubCommand(args[1])) {
+            case ADD:
+                // TODO すでに追加されている
+                // TODO 追加処理
+                break;
+            case REMOVE:
+
+                // TODO リストに存在しない
+                // TODO 削除処理
+                break;
+        }
+    }
+
+    private void cancel(CommandSender sender, String[] args) {
+        // TODO 投票受付中か
+
+        // TODO キャンセル処理
     }
 
     @Override
@@ -44,7 +96,7 @@ public class Question implements CommandExecutor, TabCompleter {
     }
 
     private List<String> first(String[] args) {
-        return allowed.stream()
+        return allowedSubcommand.stream()
                 .map(SubCommand::commandName)
                 .filter(e -> e.startsWith(args[0]))
                 .collect(Collectors.toList());
@@ -54,7 +106,7 @@ public class Question implements CommandExecutor, TabCompleter {
         switch (subCommand) {
             case ASK:
                 return Collections.singletonList("<質問>");
-            case ADD_IGNORE_PLAYER:
+            case IGNORE_PLAYER:
                 return null;
             default:
                 return new ArrayList<>();

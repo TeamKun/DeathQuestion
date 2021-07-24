@@ -4,9 +4,9 @@ main: net.kunmc.lab.deathquestion.DeathQuestion
 api-version: 1.16
 commands:
   open:
-    permission: deathQuestion.public
-  vote:
     permission: deathQuestion.op
+  vote:
+    permission: deathQuestion.public
   question:
     permission: deathQuestion.op
 permissions:

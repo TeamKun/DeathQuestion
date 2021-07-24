@@ -8,7 +8,9 @@ public enum SubCommand {
     KILL ("kill"),
     CHANGE_TO_SPECTATOR ("changeToSpectator"),
     ASK ("ask"),
-    ADD_IGNORE_PLAYER ("addIgnorePlayer"),
+    IGNORE_PLAYER ("ignorePlayer"),
+    ADD("add"),
+    REMOVE("remove"),
     CANCEL ("cancel");
 
     private String name;

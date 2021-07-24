@@ -22,6 +22,18 @@ public class Vote implements CommandExecutor, TabCompleter {
 
     @Override
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String[] args) {
+        // TODO 引数が足りているか
+
+        // TODO 引数が正常か
+
+        // TODO 投票受付中か
+
+        // TODO スペクテーターでないか
+
+        // TODO 投票対象外プレイヤーでないか
+
+        // TODO 投票処理
+
         return false;
     }
 
