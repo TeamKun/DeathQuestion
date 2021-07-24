@@ -4,12 +4,76 @@ import net.kunmc.lab.deathquestion.util.MessageUtil;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
+import org.bukkit.command.TabCompleter;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
-public class Question implements CommandExecutor {
+import java.util.*;
+import java.util.stream.Collectors;
+
+public class Question implements CommandExecutor, TabCompleter {
+
+    /** サブコマンド */
+    private Set<SubCommand> allowed;
+
+    {
+        allowed = EnumSet.of(SubCommand.ASK, SubCommand.ADD_IGNORE_PLAYER, SubCommand.CANCEL);
+    }
+
     @Override
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String[] args) {
         MessageUtil.sendAll("question");
         return false;
+    }
+
+    @Override
+    public @Nullable List<String> onTabComplete(@NotNull CommandSender sender, @NotNull Command command, @NotNull String alias, @NotNull String[] args) {
+        SubCommand subCommand = SubCommand.getSubCommand(args[0]);
+        switch (args.length) {
+            case 1:
+                return first(args);
+            case 2:
+                return second(subCommand);
+            case 3:
+                return third(subCommand);
+            case 4:
+                return fourth(subCommand);
+            default:
+                return new ArrayList<>();
+        }
+    }
+
+    private List<String> first(String[] args) {
+        return allowed.stream()
+                .map(SubCommand::commandName)
+                .filter(e -> e.startsWith(args[0]))
+                .collect(Collectors.toList());
+    }
+
+    private List<String> second(SubCommand subCommand) {
+        switch (subCommand) {
+            case ASK:
+                return Collections.singletonList("<質問>");
+            case ADD_IGNORE_PLAYER:
+                return null;
+            default:
+                return new ArrayList<>();
+        }
+    }
+
+    private List<String> third(SubCommand subCommand) {
+        if (SubCommand.ASK.equals(subCommand)) {
+            return Collections.singletonList("<選択肢A>");
+        }
+
+        return new ArrayList<>();
+    }
+
+    private List<String> fourth(SubCommand subCommand) {
+        if (SubCommand.ASK.equals(subCommand)) {
+            return Collections.singletonList("<選択肢B>");
+        }
+
+        return new ArrayList<>();
     }
 }

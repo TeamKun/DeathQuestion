@@ -4,6 +4,8 @@ import net.kunmc.lab.deathquestion.command.Command;
 import net.kunmc.lab.deathquestion.command.Open;
 import net.kunmc.lab.deathquestion.command.Question;
 import net.kunmc.lab.deathquestion.command.Vote;
+import org.bukkit.command.CommandExecutor;
+import org.bukkit.command.TabCompleter;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public final class DeathQuestion extends JavaPlugin {
@@ -16,9 +18,13 @@ public final class DeathQuestion extends JavaPlugin {
         plugin = this;
 
         // コマンド
-        getCommand(Command.OPEN.commandName()).setExecutor(new Open());
-        getCommand(Command.VOTE.commandName()).setExecutor(new Vote());
-        getCommand(Command.QUESTION.commandName()).setExecutor(new Question());
+        getCommand(Command.OPEN.commandName()).setExecutor((CommandExecutor) Command.OPEN.instance());
+        getCommand(Command.VOTE.commandName()).setExecutor((CommandExecutor) Command.VOTE.instance());
+        getCommand(Command.QUESTION.commandName()).setExecutor((CommandExecutor) Command.QUESTION.instance());
+
+        getCommand(Command.OPEN.commandName()).setTabCompleter((TabCompleter) Command.OPEN.instance());
+        getCommand(Command.VOTE.commandName()).setTabCompleter((TabCompleter) Command.VOTE.instance());
+        getCommand(Command.QUESTION.commandName()).setTabCompleter((TabCompleter) Command.QUESTION.instance());
 
     }
 
