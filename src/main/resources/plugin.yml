@@ -4,10 +4,23 @@ main: net.kunmc.lab.deathquestion.DeathQuestion
 api-version: 1.16
 commands:
   open:
+    usage: |-
+      §a/open - 投票結果を開示します
+      §a/open changeToSpectator - 処刑方法をスペクテイターに設定し投票結果を開示します
+      §a/open kill - 処刑方法をキルに設定し投票結果を開示します
     permission: deathQuestion.op
   vote:
+    usage: |-
+      §a/vote a - 選択肢Aに投票します
+      §a/vote b - 選択肢Bに投票します
     permission: deathQuestion.public
   question:
+    usage: |-
+      §a/question ask <質問> <選択肢A> <選択肢B> - 質問を出題します
+      §a/question cancel - 出題中の質問をキャンセルします
+      §a/question ignorePlayer - 投票対象外のプレイヤーを表示します
+      §a/question ignorePlayer add <プレイヤー> - 投票対象外のプレイヤーを追加します
+      §a/question ignorePlayer remove <プレイヤー> - 投票対象外のプレイヤーを削除します
     permission: deathQuestion.op
 permissions:
   deathQuestion.public:

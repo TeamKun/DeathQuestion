@@ -23,14 +23,28 @@ public class Open implements CommandExecutor, TabCompleter {
 
     @Override
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String[] args) {
+        SubCommand subCommand;
         // TODO 投票受付中か
 
-        // TODO 第一引数が存在しているか
-        // TODO 引数が正常か
+        // 第一引数が存在しているか
+        if (args.length >= 1) {
+            subCommand = ErrorChecker.existSubCommand(sender, args[0]);
+            // 引数が正常か
+            if (subCommand == null) {
+                return false;
+            }
+
+            if (!ErrorChecker.canCombine(sender, subCommand, allowed)) {
+                return false;
+            }
+
+            // TODO 設定変更
+            sender.sendMessage("設定変更");
+        }
 
         // TODO 開票処理
-
-        return false;
+        sender.sendMessage("開票処理");
+        return true;
     }
 
     @Override
