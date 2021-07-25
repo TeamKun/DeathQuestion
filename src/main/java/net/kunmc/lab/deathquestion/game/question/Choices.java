@@ -1,45 +1,70 @@
 package net.kunmc.lab.deathquestion.game.question;
 
-import net.kunmc.lab.deathquestion.util.DecorationConst;
 import org.bukkit.entity.Player;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class Choices {
 
-    private Symbol symbol;
-    /** 名前 */
-    private String name;
+    /** 選択肢A */
+    private Choice choiceA;
 
-    /** 投票者リスト */
-    List<Player> VoterList;
+    /** 選択肢B */
+    private Choice choiceB;
 
-    Choices(Symbol symbol, String name) {
-        this.symbol = symbol;
-        this.name = name;
-        VoterList = new ArrayList<>();
+    Choices(String choisesA, String choisesB) {
+        this.choiceA = new Choice(Symbol.A, choisesA);
+        this.choiceB = new Choice(Symbol.B, choisesB);
     }
 
     /**
      * 投票する
      * */
-    void vote(Player voter) {
-        VoterList.add(voter);
-        voter.sendMessage(DecorationConst.GREEN + this.symbol.name() + "." + this.name + "に投票しました");
+    void vote(Player voter, Symbol symbol) {
+        // 選択肢両方のリストから削除
+        choiceA.remove(voter);
+        choiceB.remove(voter);
+
+        // 投票
+        if (choiceA.isMatchSymbol(symbol)) {
+            choiceA.vote(voter);
+        }
+
+        if (choiceB.isMatchSymbol(symbol)) {
+            choiceB.vote(voter);
+        }
     }
 
     /**
-     * リストから削除する
+     * 得票数が同数か判定する
      * */
-    void remove(Player voter) {
-        VoterList.remove(voter);
+    boolean isSameNumberOfVotes() {
+        return choiceA.numberOfVotes() == choiceB.numberOfVotes();
     }
 
     /**
-     *　シンボルをチェック
+     * 多数派を取得する
      * */
-    boolean isMatchSymbol(Symbol symbol) {
-        return this.symbol.equals(symbol);
+    Choice majority() {
+        if (isSameNumberOfVotes()) {
+            return null;
+        }
+        if (choiceA.numberOfVotes() > choiceB.numberOfVotes()) {
+            return choiceA;
+        }
+
+        return choiceB;
+    }
+
+    /**
+     * 少数派を取得する
+     * */
+    Choice minority() {
+        if (isSameNumberOfVotes()) {
+            return null;
+        }
+        if (choiceA.numberOfVotes() < choiceB.numberOfVotes()) {
+            return choiceA;
+        }
+
+        return choiceB;
     }
 }

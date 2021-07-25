@@ -1,8 +1,7 @@
 package net.kunmc.lab.deathquestion.config;
 
 import net.kunmc.lab.deathquestion.DeathQuestion;
-import net.kyori.adventure.text.Component;
-import org.bukkit.Bukkit;
+import net.kunmc.lab.deathquestion.game.ExecutionMethod;
 import org.bukkit.command.CommandSender;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
@@ -13,6 +12,11 @@ public class Config {
     static FileConfiguration config;
 
     static IgnorePlayerList ignorePlayerList;
+
+    /**
+     * 処刑方法
+     * */
+    static ExecutionMethod executionMethod;
 
     /**
      * コンフィグをロードする
@@ -53,5 +57,12 @@ public class Config {
      * */
     public static boolean containsIgnorePlayerList(Player target) {
         return ignorePlayerList.contains(target);
+    }
+
+    /**
+     * 処刑方法を取得する
+     * */
+    public static ExecutionMethod executionMethod() {
+        return executionMethod;
     }
 }

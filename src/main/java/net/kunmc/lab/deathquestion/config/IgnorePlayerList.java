@@ -2,8 +2,6 @@ package net.kunmc.lab.deathquestion.config;
 
 import net.kunmc.lab.deathquestion.DeathQuestion;
 import net.kunmc.lab.deathquestion.util.DecorationConst;
-import org.bukkit.Bukkit;
-import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;

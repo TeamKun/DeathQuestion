@@ -4,6 +4,7 @@ import net.kunmc.lab.deathquestion.game.question.Symbol;
 import net.kunmc.lab.deathquestion.util.DecorationConst;
 import net.kyori.adventure.text.Component;
 import org.bukkit.Bukkit;
+import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 public class Manager {
@@ -12,6 +13,11 @@ public class Manager {
      * ゲームの状態
      */
     private static State state = new Waiting();
+
+    /**
+     * 処刑方法
+     * */
+    private static ExecutionMethod executionMethod = ExecutionMethod.CHANGE_TO_SPECTATOR;
 
     /**
      * 投票を開始する
@@ -37,5 +43,12 @@ public class Manager {
      * */
     public static void vote(Player voter, Symbol symbol) {
         state.vote(voter, symbol);
+    }
+
+    /**
+     * 開票する
+     * */
+    public static void open(CommandSender sender) {
+        state.open(sender);
     }
 }

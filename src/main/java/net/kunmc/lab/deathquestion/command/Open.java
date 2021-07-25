@@ -1,5 +1,6 @@
 package net.kunmc.lab.deathquestion.command;
 
+import net.kunmc.lab.deathquestion.game.Manager;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -24,7 +25,6 @@ public class Open implements CommandExecutor, TabCompleter {
     @Override
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String[] args) {
         SubCommand subCommand;
-        // TODO 投票受付中か
 
         // 第一引数が存在しているか
         if (args.length >= 1) {
@@ -42,8 +42,8 @@ public class Open implements CommandExecutor, TabCompleter {
             sender.sendMessage("設定変更");
         }
 
-        // TODO 開票処理
-        sender.sendMessage("開票処理");
+        // 開票処理
+        Manager.open(sender);
         return true;
     }
 
