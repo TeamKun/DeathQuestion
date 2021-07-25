@@ -1,5 +1,7 @@
 package net.kunmc.lab.deathquestion.command;
 
+import net.kunmc.lab.deathquestion.game.Manager;
+import net.kunmc.lab.deathquestion.game.question.Symbol;
 import net.kunmc.lab.deathquestion.util.DecorationConst;
 import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
@@ -47,7 +49,6 @@ public class Vote implements CommandExecutor, TabCompleter {
         if (!ErrorChecker.canCombine(sender, subCommand, allowed)) {
             return false;
         }
-        // TODO 投票受付中か
 
         // スペクテーターでないか
         if (player.getGameMode().equals(GameMode.SPECTATOR)) {
@@ -57,8 +58,8 @@ public class Vote implements CommandExecutor, TabCompleter {
 
         // TODO 投票対象外プレイヤーでないか
 
-        // TODO 投票処理
-        sender.sendMessage("投票処理");
+        // 投票処理
+        Manager.vote(Bukkit.getPlayer(sender.getName()), Symbol.getSymbol(subCommand.commandName()));
 
         return true;
     }

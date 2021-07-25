@@ -4,7 +4,7 @@ public enum Symbol {
     A,
     B;
 
-    Symbol getSymbol(String name) {
+    public static Symbol getSymbol(String name) {
         if (name.equalsIgnoreCase("a")) {
             return Symbol.A;
         }
