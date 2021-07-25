@@ -1,6 +1,7 @@
 package net.kunmc.lab.deathquestion;
 
 import net.kunmc.lab.deathquestion.command.Command;
+import net.kunmc.lab.deathquestion.config.Config;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.TabCompleter;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -13,6 +14,9 @@ public final class DeathQuestion extends JavaPlugin {
     @Override
     public void onEnable() {
         plugin = this;
+
+        // コンフィグ
+        Config.loadConfig();
 
         // コマンド
         getCommand(Command.OPEN.commandName()).setExecutor((CommandExecutor) Command.OPEN.instance());

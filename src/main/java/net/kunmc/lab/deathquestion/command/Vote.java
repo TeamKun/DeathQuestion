@@ -1,5 +1,6 @@
 package net.kunmc.lab.deathquestion.command;
 
+import net.kunmc.lab.deathquestion.config.Config;
 import net.kunmc.lab.deathquestion.game.Manager;
 import net.kunmc.lab.deathquestion.game.question.Symbol;
 import net.kunmc.lab.deathquestion.util.DecorationConst;
@@ -34,7 +35,7 @@ public class Vote implements CommandExecutor, TabCompleter {
     @Override
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String[] args) {
         SubCommand subCommand;
-        Player player = Bukkit.getPlayer(sender.getName());
+        Player voter = Bukkit.getPlayer(sender.getName());
         // 引数の数をチェック
         if (!ErrorChecker.isCorrectArgsLength(sender, args,1)) {
             return false;
@@ -51,12 +52,16 @@ public class Vote implements CommandExecutor, TabCompleter {
         }
 
         // スペクテーターでないか
-        if (player.getGameMode().equals(GameMode.SPECTATOR)) {
+        if (voter.getGameMode().equals(GameMode.SPECTATOR)) {
             sender.sendMessage(DecorationConst.RED + HAVE_NOT_RIGHT_TO_VOTE);
-            return false;
+            return true;
         }
 
-        // TODO 投票対象外プレイヤーでないか
+        // 投票対象外プレイヤーでないか
+        if (Config.containsIgnorePlayerList(voter)) {
+            sender.sendMessage(DecorationConst.RED + HAVE_NOT_RIGHT_TO_VOTE);
+            return true;
+        }
 
         // 投票処理
         Manager.vote(Bukkit.getPlayer(sender.getName()), Symbol.getSymbol(subCommand.commandName()));

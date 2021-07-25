@@ -1,6 +1,7 @@
-package net.kunmc.lab.deathquestion.game.question;
+package net.kunmc.lab.deathquestion.game;
 
 import net.kunmc.lab.deathquestion.game.State;
+import net.kunmc.lab.deathquestion.game.question.Symbol;
 import net.kunmc.lab.deathquestion.util.DecorationConst;
 import org.bukkit.entity.Player;
 

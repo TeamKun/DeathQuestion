@@ -1,5 +1,6 @@
 package net.kunmc.lab.deathquestion.command;
 
+import net.kunmc.lab.deathquestion.config.Config;
 import net.kunmc.lab.deathquestion.game.Manager;
 import net.kunmc.lab.deathquestion.util.DecorationConst;
 import org.bukkit.Bukkit;
@@ -75,7 +76,8 @@ public class Question implements CommandExecutor, TabCompleter {
         SubCommand subCommand;
         //引数なし
         if (args.length < 2) {
-            sender.sendMessage("リスト表示");
+            // リスト表示処理
+            Config.showIgnorePlayerList(sender);
             return true;
         }
 
@@ -95,19 +97,21 @@ public class Question implements CommandExecutor, TabCompleter {
         }
 
         Player target = Bukkit.getPlayer(args[2]);
-        // TODO プレイヤーが存在するか
+
+        if (target == null) {
+            sender.sendMessage(DecorationConst.RED + "存在しないプレイヤーです");
+            return true;
+        }
 
         switch (SubCommand.getSubCommand(args[1])) {
             case ADD:
-                // TODO すでに追加されている
-                // TODO 追加処理
-                sender.sendMessage("追加処理");
+                // 追加処理
+                Config.addIgnorePlayerList(sender, target);
                 return true;
             case REMOVE:
 
-                // TODO リストに存在しない
-                // TODO 削除処理
-                sender.sendMessage("削除処理");
+                // 削除処理
+                Config.removeIgnorePlayerList(sender, target);
                 return true;
             default:
                 return false;

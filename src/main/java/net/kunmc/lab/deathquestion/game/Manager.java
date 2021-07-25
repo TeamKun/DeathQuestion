@@ -1,7 +1,6 @@
 package net.kunmc.lab.deathquestion.game;
 
 import net.kunmc.lab.deathquestion.game.question.Symbol;
-import net.kunmc.lab.deathquestion.game.question.Waiting;
 import net.kunmc.lab.deathquestion.util.DecorationConst;
 import net.kyori.adventure.text.Component;
 import org.bukkit.Bukkit;
