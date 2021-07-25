@@ -1,6 +1,5 @@
 package net.kunmc.lab.deathquestion.command;
 
-import net.kunmc.lab.deathquestion.util.MessageUtil;
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
