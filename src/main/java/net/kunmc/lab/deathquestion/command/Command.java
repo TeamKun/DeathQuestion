@@ -1,10 +1,5 @@
 package net.kunmc.lab.deathquestion.command;
 
-import org.bukkit.command.CommandExecutor;
-import org.bukkit.command.TabCompleter;
-
-import java.util.*;
-
 public enum Command {
     OPEN ("open", new Open()),
     VOTE ("vote", new Vote()),

@@ -1,5 +1,7 @@
 package net.kunmc.lab.deathquestion.command;
 
+import net.kunmc.lab.deathquestion.game.Manager;
+import net.kunmc.lab.deathquestion.util.DecorationConst;
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -64,8 +66,8 @@ public class Question implements CommandExecutor, TabCompleter {
             return false;
         }
 
-        // TODO 出題処理
-        sender.sendMessage("出題処理");
+        // 出題処理
+        Manager.startVoting(args[1], args[2], args[3]);
         return true;
     }
 
@@ -113,9 +115,9 @@ public class Question implements CommandExecutor, TabCompleter {
     }
 
     private boolean cancel(CommandSender sender, String[] args) {
-        // TODO 投票受付中か
-        // TODO キャンセル処理
-        sender.sendMessage("キャンセル処理");
+        if (!Manager.cancelVoting()) {
+            sender.sendMessage(DecorationConst.RED + "現在投票を受け付けていません");
+        }
         return true;
     }
 
