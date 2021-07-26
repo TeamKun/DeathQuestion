@@ -1,7 +1,6 @@
 package net.kunmc.lab.deathquestion.config;
 
 import net.kunmc.lab.deathquestion.DeathQuestion;
-import net.kunmc.lab.deathquestion.game.ExecutionMethod;
 import org.bukkit.command.CommandSender;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
@@ -9,13 +8,13 @@ import org.bukkit.entity.Player;
 import java.util.List;
 
 public class Config {
+    /** コンフィグオブジェクト */
     static FileConfiguration config;
 
+    /** 対象外リスト */
     static IgnorePlayerList ignorePlayerList;
 
-    /**
-     * 処刑方法
-     * */
+    /** 処刑方法 */
     static ExecutionMethod executionMethod;
 
     /**
@@ -26,7 +25,16 @@ public class Config {
 
         //　コンフィグファイルを取得
         config = DeathQuestion.plugin.getConfig();
+
+        // 対象外プレイヤーリスト
         ignorePlayerList = new IgnorePlayerList((List<Player>) config.getList(IgnorePlayerList.PATH));
+
+        // 処刑方法
+        executionMethod = ExecutionMethod.getMethodName(config.getString(ExecutionMethod.PATH));
+
+        if (executionMethod == null) {
+            executionMethod = ExecutionMethod.CHANGE_TO_SPECTATOR;
+        }
     }
 
     /**
@@ -64,5 +72,15 @@ public class Config {
      * */
     public static ExecutionMethod executionMethod() {
         return executionMethod;
+    }
+
+    /**
+     * 処刑方法を設定する
+     * */
+    public static void setExecutionMethod(ExecutionMethod method) {
+        executionMethod = method;
+        config.set(ExecutionMethod.PATH, method.methodName());
+        DeathQuestion.plugin.saveConfig();
+
     }
 }

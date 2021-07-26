@@ -1,8 +1,5 @@
 package net.kunmc.lab.deathquestion.config;
 
-import net.kunmc.lab.deathquestion.DeathQuestion;
-import org.bukkit.configuration.file.FileConfiguration;
-
 import java.util.Arrays;
 
 public enum ExecutionMethod {
