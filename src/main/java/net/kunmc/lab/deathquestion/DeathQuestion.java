@@ -2,7 +2,8 @@ package net.kunmc.lab.deathquestion;
 
 import net.kunmc.lab.deathquestion.command.Command;
 import net.kunmc.lab.deathquestion.config.Config;
-import net.kunmc.lab.deathquestion.game.Event;
+import net.kunmc.lab.deathquestion.event.Event;
+import net.kunmc.lab.deathquestion.userInterface.ActionBarLogic;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.TabCompleter;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -30,6 +31,9 @@ public final class DeathQuestion extends JavaPlugin {
 
         // イベント
         getServer().getPluginManager().registerEvents(new Event(), this);
+
+        // アクションバー
+        new ActionBarLogic().runTaskTimerAsynchronously(plugin, 0, 5);
     }
 
     @Override

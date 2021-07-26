@@ -1,6 +1,8 @@
 package net.kunmc.lab.deathquestion.game.question;
 
 import net.kunmc.lab.deathquestion.util.DecorationConst;
+import net.kyori.adventure.text.Component;
+import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 
 public class Question {
@@ -31,6 +33,7 @@ public class Question {
         // 得票数を比較
         // 同数獲得
         if (choices.isSameNumberOfVotes()) {
+            Bukkit.broadcast(Component.text(DecorationConst.GREEN + "引き分けでした"));
             return;
         }
 

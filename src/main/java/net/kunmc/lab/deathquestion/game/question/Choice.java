@@ -1,7 +1,7 @@
 package net.kunmc.lab.deathquestion.game.question;
 
 import net.kunmc.lab.deathquestion.config.Config;
-import net.kunmc.lab.deathquestion.game.ExecutionMethod;
+import net.kunmc.lab.deathquestion.config.ExecutionMethod;
 import net.kunmc.lab.deathquestion.util.DecorationConst;
 import net.kyori.adventure.text.Component;
 import org.bukkit.Bukkit;

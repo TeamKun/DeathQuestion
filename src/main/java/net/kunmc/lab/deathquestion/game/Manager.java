@@ -1,5 +1,6 @@
 package net.kunmc.lab.deathquestion.game;
 
+import net.kunmc.lab.deathquestion.config.ExecutionMethod;
 import net.kunmc.lab.deathquestion.game.question.Symbol;
 import net.kunmc.lab.deathquestion.util.DecorationConst;
 import net.kyori.adventure.text.Component;
@@ -50,5 +51,20 @@ public class Manager {
      * */
     public static void open(CommandSender sender) {
         state.open(sender);
+
+        if (state instanceof Voting) {
+            state = new Waiting();
+        }
+    }
+
+    /**
+     * 現在投票中か判定
+     * */
+    public static boolean isVoting() {
+        if (state instanceof Voting) {
+            return true;
+        }
+
+        return false;
     }
 }

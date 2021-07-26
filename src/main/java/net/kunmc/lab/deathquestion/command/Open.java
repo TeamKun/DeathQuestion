@@ -1,6 +1,8 @@
 package net.kunmc.lab.deathquestion.command;
 
+import net.kunmc.lab.deathquestion.config.ExecutionMethod;
 import net.kunmc.lab.deathquestion.game.Manager;
+import net.kunmc.lab.deathquestion.util.DecorationConst;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -38,8 +40,10 @@ public class Open implements CommandExecutor, TabCompleter {
                 return false;
             }
 
-            // TODO 設定変更
-            sender.sendMessage("設定変更");
+            ExecutionMethod executionMethod = ExecutionMethod.getMethodName(args[0]);
+
+            // 処刑方法変更
+            sender.sendMessage(DecorationConst.GREEN + "処刑方法を" + executionMethod.methodName() + "に変更しました");
         }
 
         // 開票処理
