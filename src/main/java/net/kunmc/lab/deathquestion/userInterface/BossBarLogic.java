@@ -8,13 +8,14 @@ import org.bukkit.boss.BossBar;
 import org.bukkit.entity.Player;
 
 public class BossBarLogic {
-    private static BossBar bar = Bukkit.createBossBar("", BarColor.RED, BarStyle.SEGMENTED_10);
+    private static BossBar bar = Bukkit.createBossBar("", BarColor.RED, BarStyle.SOLID);
 
     /**
      * バーを全員に表示する
      * */
     public static void showBar(String name) {
         bar.setTitle(DecorationConst.RED + name);
+        bar.setProgress(0);
 
         Bukkit.getOnlinePlayers().forEach(player -> {
             bar.addPlayer(player);
