@@ -9,7 +9,7 @@ public class SoundUtil {
      * */
     public static void playSoundAll(Sound sound) {
         Bukkit.getOnlinePlayers().forEach(player -> {
-            player.playSound(player.getEyeLocation(), sound, 1f, 1f);
+            player.playSound(player.getEyeLocation(), sound, 0.4f, 1f);
         });
     }
 }
