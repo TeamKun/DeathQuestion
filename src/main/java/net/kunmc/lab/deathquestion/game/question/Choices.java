@@ -1,6 +1,14 @@
 package net.kunmc.lab.deathquestion.game.question;
 
+import net.kunmc.lab.deathquestion.config.Config;
+import net.kunmc.lab.deathquestion.game.GameLogic;
+import net.kunmc.lab.deathquestion.util.DecorationConst;
+import net.kunmc.lab.deathquestion.util.MessageUtil;
+import net.kyori.adventure.text.Component;
 import org.bukkit.entity.Player;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class Choices {
 
@@ -66,5 +74,55 @@ public class Choices {
         }
 
         return choiceB;
+    }
+
+    /**
+     * 選択肢Aを取得する
+     * */
+    public Choice a() {
+        return choiceA;
+    }
+
+    /**
+     * 選択肢Bを取得する
+     * */
+    public Choice b() {
+        return choiceB;
+    }
+
+    /**
+     * 投票していないプレイヤーを処刑
+     * */
+    public void executeNoVotePlayerList(List<Player> targetPlayerList) {
+        List<Player> noVotePlayerList = new ArrayList<>();
+
+        targetPlayerList.forEach(player -> {
+            // 投票しているか
+            if (choiceA.contains(player) || choiceB.contains(player)) {
+                return;
+            }
+
+            // 対象外リストに含まれるか
+            if (Config.containsIgnorePlayerList(player)) {
+                return;
+            }
+
+            noVotePlayerList.add(player);
+        });
+
+        if (noVotePlayerList.size() == 0) {
+            return;
+        }
+
+        // 処刑処理
+        MessageUtil.broadcast(DecorationConst.RED + "投票していないプレイヤーを処刑しました");
+
+        // ネームタグをセット
+        noVotePlayerList.forEach(player -> {
+            player.playerListName(Component.text(player.getName() + " : " + "無投票"));
+        });
+
+        // 処刑処理
+        GameLogic.execute(noVotePlayerList);
     }
 }
