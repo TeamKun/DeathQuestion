@@ -10,10 +10,12 @@ import org.bukkit.entity.Player;
 
 public class Manager {
 
-    /**
-     * ゲームの状態
-     */
+    /** ゲームの状態 */
     private static State state = new Waiting();
+
+    /** 開票処理中フラグ */
+    static boolean isOpening;
+
 
     /**
      * 処刑方法
@@ -66,5 +68,12 @@ public class Manager {
         }
 
         return false;
+    }
+
+    /**
+     * 現在開票中か判定
+     * */
+    public static boolean isOpening() {
+        return isOpening;
     }
 }

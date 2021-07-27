@@ -1,8 +1,5 @@
 package net.kunmc.lab.deathquestion.game.question;
 
-import net.kunmc.lab.deathquestion.util.DecorationConst;
-import net.kyori.adventure.text.Component;
-import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 
 public class Question {
@@ -18,6 +15,13 @@ public class Question {
     }
 
     /**
+     * テーマを取得する
+     * */
+    public String theme() {
+        return this.theme;
+    }
+
+    /**
      * 投票する
      * */
     public void vote(Player voter, Symbol symbol) {
@@ -25,28 +29,30 @@ public class Question {
     }
 
     /**
-     * 開票する
+     * 得票数が同数か判定する
      * */
-    public void open() {
-        // TODO 開票演出
+    public boolean isSameNumberOfVotes() {
+        return choices.isSameNumberOfVotes();
+    }
 
-        // 得票数を比較
-        // 同数獲得
-        if (choices.isSameNumberOfVotes()) {
-            Bukkit.broadcast(Component.text(DecorationConst.GREEN + "引き分けでした"));
-            return;
-        }
+    /**
+     * 多数派を取得する
+     * */
+    public Choice majority() {
+        return choices.majority();
+    }
 
-        /** 多数派 */
-        Choice majority = choices.majority();
-        /** 少数派 */
-        Choice minority = choices.minority();
+    /**
+     * 少数派を取得する
+     * */
+    public Choice minority() {
+        return choices.minority();
+    }
 
-        // 投票先を開示
-        majority.setNameTag(DecorationConst.AQUA);
-        minority.setNameTag(DecorationConst.DARK_RED);
-
-        // 少数派を処刑
-        minority.execute();
+    /**
+     * 選択肢を取得する
+     * */
+    public Choices choices() {
+        return this.choices;
     }
 }

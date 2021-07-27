@@ -1,5 +1,6 @@
 package net.kunmc.lab.deathquestion.command;
 
+import net.kunmc.lab.deathquestion.config.Config;
 import net.kunmc.lab.deathquestion.config.ExecutionMethod;
 import net.kunmc.lab.deathquestion.game.Manager;
 import net.kunmc.lab.deathquestion.util.DecorationConst;
@@ -43,7 +44,8 @@ public class Open implements CommandExecutor, TabCompleter {
             ExecutionMethod executionMethod = ExecutionMethod.getMethodName(args[0]);
 
             // 処刑方法変更
-            sender.sendMessage(DecorationConst.GREEN + "処刑方法を" + executionMethod.methodName() + "に変更しました");
+            Config.setExecutionMethod(executionMethod);
+            sender.sendMessage(DecorationConst.GREEN + "処刑方法を" + executionMethod.methodName() + "に設定しました");
         }
 
         // 開票処理
