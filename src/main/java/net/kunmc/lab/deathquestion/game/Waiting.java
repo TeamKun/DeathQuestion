@@ -16,6 +16,9 @@ public class Waiting implements State {
         ActionBarLogic.clearActionBar();
     }
 
+    /**
+     * 投票する
+     * */
     public void vote(Player voter, Symbol symbol) {
         voter.sendMessage(DecorationConst.RED + "現在投票を受付けていません");
     }
