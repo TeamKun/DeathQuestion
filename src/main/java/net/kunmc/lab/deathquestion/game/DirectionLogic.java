@@ -30,10 +30,8 @@ public class DirectionLogic {
      * */
     public static void open(Choices choises) throws InterruptedException {
 
-        // int choiceANumberOfVotes = choises.a().numberOfVotes();
-        int choiceANumberOfVotes = 25;
-        // int choiceBNumberOfVotes = choises.b().numberOfVotes();
-        int choiceBNumberOfVotes = 15;
+        int choiceANumberOfVotes = choises.a().numberOfVotes();
+        int choiceBNumberOfVotes = choises.b().numberOfVotes();
 
         int count = 0;
         int countA = 0;
@@ -44,7 +42,11 @@ public class DirectionLogic {
         while (count <= Math.max(choiceANumberOfVotes, choiceBNumberOfVotes)) {
             count ++;
 
-            SoundUtil.playSoundAll(Sound.BLOCK_NOTE_BLOCK_BIT);
+            // 0の時は音を鳴らさない
+            if (count != 0) {
+                SoundUtil.playSoundAll(Sound.BLOCK_NOTE_BLOCK_BIT);
+            }
+            
             MessageUtil.sendTitleAll(DecorationConst.AQUA + countA + DecorationConst.RESET + " vs " + DecorationConst.RED + countB,
                     DecorationConst.AQUA + choises.a().name() + DecorationConst.RESET + " vs " + DecorationConst.RED + choises.b().name(),
                     0,
