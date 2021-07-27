@@ -26,13 +26,6 @@ public class ActionBarLogic extends BukkitRunnable {
     }
 
     /**
-     * プレイヤーにアクションバーを追加する
-     * */
-    public static void setActionBar(Player player) {
-        player.sendActionBar(message);
-    }
-
-    /**
      * アクションバーをクリアする
      * */
     public static void clearActionBar() {
