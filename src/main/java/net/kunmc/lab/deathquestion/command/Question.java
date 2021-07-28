@@ -34,7 +34,8 @@ public class Question implements CommandExecutor, TabCompleter {
         SubCommand subCommand;
 
         // 引数が１つ以上存在するか
-        if (!ErrorChecker.isEnoughArgsLength(sender, args, 1)) {
+        if (args.length == 0) {
+            sender.sendMessage(DecorationConst.GREEN + "現在の処刑方法: " + Config.executionMethod().methodName());
             return false;
         }
 
