@@ -46,9 +46,9 @@ public class DirectionLogic {
             if (count != 0) {
                 SoundUtil.playSoundAll(Sound.BLOCK_NOTE_BLOCK_BIT);
             }
-            
-            MessageUtil.sendTitleAll(DecorationConst.AQUA + countA + DecorationConst.RESET + " vs " + DecorationConst.RED + countB,
-                    DecorationConst.AQUA + choises.a().name() + DecorationConst.RESET + " vs " + DecorationConst.RED + choises.b().name(),
+
+            MessageUtil.sendTitleAll(DecorationConst.AQUA + countA + DecorationConst.RESET + " - " + DecorationConst.RED + countB,
+                    DecorationConst.AQUA + choises.a().name() + DecorationConst.RESET + " - " + DecorationConst.RED + choises.b().name(),
                     0,
                     400,
                     0);
