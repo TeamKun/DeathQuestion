@@ -27,17 +27,6 @@ public class Event implements Listener {
     }
 
     @EventHandler(ignoreCancelled = true)
-    public void onPlayerLogin(PlayerLoginEvent event) {
-        if (!Manager.isVoting()) {
-            return;
-        }
-
-        Player player = event.getPlayer();
-        // バーを表示
-        BossBarLogic.addPLayer(player);
-    }
-
-    @EventHandler(ignoreCancelled = true)
     public void onPlayerQuit(PlayerQuitEvent event) {
         // 開票中にログアウトしたときのペナルティ
         if (!Manager.isOpening()) {
