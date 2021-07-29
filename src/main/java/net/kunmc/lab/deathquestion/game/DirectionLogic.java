@@ -42,11 +42,6 @@ public class DirectionLogic {
         while (count <= Math.max(choiceANumberOfVotes, choiceBNumberOfVotes)) {
             count ++;
 
-            // 0の時は音を鳴らさない
-            if (count != 0) {
-                SoundUtil.playSoundAll(Sound.BLOCK_NOTE_BLOCK_BIT);
-            }
-
             MessageUtil.sendTitleAll(DecorationConst.AQUA + countA + DecorationConst.RESET + " - " + DecorationConst.RED + countB,
                     DecorationConst.AQUA + choises.a().name() + DecorationConst.RESET + " - " + DecorationConst.RED + choises.b().name(),
                     0,
@@ -59,6 +54,11 @@ public class DirectionLogic {
 
             if (countB < choiceBNumberOfVotes) {
                 countB ++;
+            }
+
+            // 0の時は音を鳴らさない
+            if (count != 0) {
+                SoundUtil.playSoundAll(Sound.BLOCK_NOTE_BLOCK_BIT);
             }
 
             Thread.sleep(200);
