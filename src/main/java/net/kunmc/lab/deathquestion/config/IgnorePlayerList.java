@@ -1,6 +1,7 @@
 package net.kunmc.lab.deathquestion.config;
 
 import net.kunmc.lab.deathquestion.DeathQuestion;
+import net.kunmc.lab.deathquestion.userInterface.NameTagLogic;
 import net.kunmc.lab.deathquestion.util.DecorationConst;
 import org.bukkit.command.CommandSender;
 import org.bukkit.configuration.file.FileConfiguration;
@@ -60,6 +61,7 @@ public class IgnorePlayerList {
         }
 
         list.add(target);
+        NameTagLogic.clearNameTag(target);
         sender.sendMessage(DecorationConst.GREEN + target.getName() + "を対象外リストに追加しました");
     }
 

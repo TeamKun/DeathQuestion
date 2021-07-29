@@ -35,4 +35,11 @@ public class NameTagLogic {
             player.playerListName(Component.text(player.getName()));
         });
     }
+
+    /**
+     * ネームタグをクリアする
+     */
+    public static void clearNameTag(Player player) {
+        player.playerListName(Component.text(player.getName()));
+    }
 }
