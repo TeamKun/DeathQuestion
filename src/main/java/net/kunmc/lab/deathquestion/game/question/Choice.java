@@ -72,7 +72,7 @@ public class Choice {
      * */
     public void setNameTag(String colorConst) {
         voterList.forEach(player -> {
-            player.playerListName(Component.text(player.getName() + " : "+ colorConst + name));
+            player.playerListName(Component.text(player.getName() + " : "+ colorConst + symbol));
         });
     }
 
