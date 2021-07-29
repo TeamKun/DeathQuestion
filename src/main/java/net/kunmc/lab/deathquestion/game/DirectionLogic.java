@@ -108,12 +108,12 @@ public class DirectionLogic {
         String choiceNameB = b.name();
 
         /** 選択肢Aの得票数 */
-        int NumberOfVotesA = a.numberOfVotes();
+        float NumberOfVotesA = a.numberOfVotes();
         /** 選択肢Bの得票数 */
-        int NumberOfVotesB = b.numberOfVotes();
+        float NumberOfVotesB = b.numberOfVotes();
 
         /** 投票の総数 */
-        int totalNumberOfVotes = NumberOfVotesA + NumberOfVotesB;
+        float totalNumberOfVotes = NumberOfVotesA + NumberOfVotesB;
 
         /** 選択肢Aの得票率 */
         String percentageOfVotesA;
@@ -133,14 +133,14 @@ public class DirectionLogic {
         MessageUtil.broadcast("◆◇◆◇◆◇◆◇◆◇◆◇◆◇◆◇◆◇◆◇◆◇◆◇◆◇◆◇◆◇◆◇◆◇◆◇◆◇◆◇◆◇◆◇");
         MessageUtil.broadcast(DecorationConst.GREEN + "投票結果");
         MessageUtil.broadcast(DecorationConst.GREEN + "お題: " + theme);
-        MessageUtil.broadcast(DecorationConst.GREEN + "投票総数: " + totalNumberOfVotes + "票");
+        MessageUtil.broadcast(DecorationConst.GREEN + "投票総数: " + (int)totalNumberOfVotes + "票");
         MessageUtil.broadcast(" ");
         MessageUtil.broadcast(DecorationConst.AQUA + "A: " + choiceNameA);
-        MessageUtil.broadcast(DecorationConst.AQUA + "得票数: " + NumberOfVotesA + "票");
+        MessageUtil.broadcast(DecorationConst.AQUA + "得票数: " + (int)NumberOfVotesA + "票");
         MessageUtil.broadcast(DecorationConst.AQUA + "得票率: " + percentageOfVotesA + "%");
         MessageUtil.broadcast(" ");
         MessageUtil.broadcast(DecorationConst.LIGHT_PURPLE + "B: " + choiceNameB);
-        MessageUtil.broadcast(DecorationConst.LIGHT_PURPLE + "得票数: " + NumberOfVotesB + "票");
+        MessageUtil.broadcast(DecorationConst.LIGHT_PURPLE + "得票数: " + (int)NumberOfVotesB + "票");
         MessageUtil.broadcast(DecorationConst.LIGHT_PURPLE + "得票率: " + percentageOfVotesB + "%");
         MessageUtil.broadcast("◆◇◆◇◆◇◆◇◆◇◆◇◆◇◆◇◆◇◆◇◆◇◆◇◆◇◆◇◆◇◆◇◆◇◆◇◆◇◆◇◆◇◆◇");
     }
