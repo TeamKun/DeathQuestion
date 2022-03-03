@@ -97,13 +97,13 @@ public class Voting implements State {
                     Choice minority = question.minority();
 
                     // 結果表示演出
-                    DirectionLogic.resultShow(majority);
+                    DirectionLogic.resultShow(minority);
 
                     // タイトルクリア
                     MessageUtil.clearTitle();
 
                     // 少数派を処刑
-                    minority.execute();
+                    majority.execute();
 
                     // 投票していないプレイヤーを処刑
                     choices.executeNoVotePlayerList(playerList);

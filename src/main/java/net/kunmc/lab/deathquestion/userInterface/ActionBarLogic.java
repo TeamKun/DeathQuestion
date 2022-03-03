@@ -10,7 +10,6 @@ public class ActionBarLogic extends BukkitRunnable {
 
     private static Component message = Component.text(" ");
 
-
     @Override
     public void run() {
         Bukkit.getOnlinePlayers().forEach(player -> {

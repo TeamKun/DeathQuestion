@@ -81,6 +81,5 @@ public class Config {
         executionMethod = method;
         config.set(ExecutionMethod.PATH, method.methodName());
         DeathQuestion.plugin.saveConfig();
-
     }
 }
